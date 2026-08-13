@@ -1,16 +1,145 @@
+/* =====================================================
+   BASIC SETTINGS
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: #08090d;
-
     color: #f5f5f7;
-
     font-family: Arial, Helvetica, sans-serif;
-
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+:root {
+    --background: #08090d;
+    --text: #f5f5f7;
+    --text-muted: #a5a8b3;
+    --accent: #8b7cff;
+    --border: #292c37;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+    width: min(100% - 48px, 1180px);
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    background-color: rgba(8, 9, 13, 0.95);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+.nav-container {
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    font-size: 1.5rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.05em;
+}
+
+
+.logo span {
+    color: var(--accent);
+}
+
+
+/* =====================================================
+   NAVIGATION LINKS
+===================================================== */
+
+nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+nav a {
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    transition: color 0.25s ease;
+}
+
+
+nav a:hover {
+    color: var(--text);
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-toggle {
+    display: none;
+
+    background: transparent;
+
+    border: none;
+
+    color: var(--text);
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
 }
