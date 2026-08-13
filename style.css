@@ -895,3 +895,35 @@ footer {
         padding: 24px;
     }
 }
+
+   <style>
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 24px;
+            }
+
+            .skills-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 20px;
+            }
+
+            .skill-tag {
+                background: rgba(139, 124, 255, 0.1);
+                color: var(--accent-light);
+                border: 1px solid rgba(139, 124, 255, 0.25);
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                transition: all 0.25s ease;
+            }
+
+            .skill-tag:hover {
+                background: var(--accent);
+                color: #ffffff;
+                border-color: var(--accent);
+                transform: translateY(-2px);
+            }
