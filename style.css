@@ -1,4 +1,83 @@
 /* =====================================================
+   GLOBAL SETTINGS
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background-color: #08090d;
+
+    color: #f5f5f7;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+
+a {
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   COLOR VARIABLES
+===================================================== */
+
+:root {
+
+    --background: #08090d;
+
+    --background-light: #101218;
+
+    --card: #12141c;
+
+    --text: #f5f5f7;
+
+    --text-muted: #a5a8b3;
+
+    --accent: #8b7cff;
+
+    --accent-light: #b7afff;
+
+    --border: #292c37;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    width: min(92%, 1200px);
+
+    margin: 0 auto;
+
+}
+
+
+/* =====================================================
    NAVIGATION BAR
 ===================================================== */
 
@@ -68,7 +147,7 @@
 
 .logo span {
 
-    color: #8b7cff;
+    color: var(--accent);
 
 }
 
@@ -92,7 +171,7 @@
 
     position: relative;
 
-    color: #a5a8b3;
+    color: var(--text-muted);
 
     font-size: 0.85rem;
 
@@ -110,8 +189,6 @@
 }
 
 
-/* Active link */
-
 .nav-link.active {
 
     color: #ffffff;
@@ -119,7 +196,7 @@
 }
 
 
-/* Active indicator */
+/* Active navigation indicator */
 
 .nav-link.active::after {
 
@@ -137,7 +214,7 @@
 
     border-radius: 50%;
 
-    background: #8b7cff;
+    background: var(--accent);
 
     transform: translateX(-50%);
 
@@ -169,15 +246,15 @@
 
 .resume-btn:hover {
 
-    background: #8b7cff;
+    background: var(--accent);
 
-    border-color: #8b7cff;
+    border-color: var(--accent);
 
 }
 
 
 /* =====================================================
-   MOBILE MENU
+   MOBILE MENU BUTTON
 ===================================================== */
 
 .menu-toggle {
@@ -196,8 +273,433 @@
 
 }
 
+
 /* =====================================================
-   HERO RESPONSIVE DESIGN
+   HERO SECTION
+===================================================== */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding-top: 150px;
+
+    padding-bottom: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+/* Hero layout */
+
+.hero-container {
+
+    width: min(92%, 1200px);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1.1fr 0.9fr;
+
+    align-items: center;
+
+    gap: 80px;
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+
+    max-width: 680px;
+
+}
+
+
+.hero-intro {
+
+    color: var(--accent);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+
+    margin-bottom: 20px;
+
+}
+
+
+.hero h1 {
+
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+
+    line-height: 0.95;
+
+    letter-spacing: -0.07em;
+
+    font-weight: 800;
+
+    color: #ffffff;
+
+}
+
+
+.hero h2 {
+
+    margin-top: 28px;
+
+    max-width: 650px;
+
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+
+    line-height: 1.2;
+
+    letter-spacing: -0.04em;
+
+    font-weight: 500;
+
+    color: #d7d8df;
+
+}
+
+
+.hero h2 span {
+
+    color: var(--accent);
+
+}
+
+
+.hero-description {
+
+    max-width: 570px;
+
+    margin-top: 25px;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 32px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    transition: all 0.25s ease;
+
+}
+
+
+/* Primary button */
+
+.btn-primary {
+
+    background: #ffffff;
+
+    color: #08090d;
+
+}
+
+
+.btn-primary:hover {
+
+    transform: translateY(-3px);
+
+    background: var(--accent);
+
+    color: #ffffff;
+
+}
+
+
+/* Secondary button */
+
+.btn-secondary {
+
+    border: 1px solid var(--border);
+
+    color: #ffffff;
+
+}
+
+
+.btn-secondary:hover {
+
+    transform: translateY(-3px);
+
+    border-color: var(--accent);
+
+    color: var(--accent-light);
+
+}
+
+
+/* =====================================================
+   SOCIAL LINKS
+===================================================== */
+
+.hero-social {
+
+    display: flex;
+
+    gap: 25px;
+
+    margin-top: 30px;
+
+}
+
+
+.hero-social a {
+
+    color: #777b88;
+
+    font-size: 0.8rem;
+
+    transition: color 0.25s ease;
+
+}
+
+
+.hero-social a:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================================
+   HERO VISUAL
+===================================================== */
+
+.hero-visual {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+/* =====================================================
+   HERO CARD
+===================================================== */
+
+.hero-card {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    min-height: 420px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* Card decorative glow */
+
+.hero-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 220px;
+
+    top: -80px;
+
+    right: -60px;
+
+    background: var(--accent);
+
+    opacity: 0.12;
+
+    border-radius: 50%;
+
+    filter: blur(50px);
+
+}
+
+
+/* =====================================================
+   HERO CARD TOP
+===================================================== */
+
+.hero-card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 0.75rem;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 0 12px var(--accent);
+
+}
+
+
+/* =====================================================
+   HERO CARD CONTENT
+===================================================== */
+
+.hero-card-content {
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+.code-symbol {
+
+    display: block;
+
+    margin-bottom: 25px;
+
+    color: var(--accent);
+
+    font-family: monospace;
+
+    font-size: 3rem;
+
+}
+
+
+.hero-card-content h3 {
+
+    font-size: 2.5rem;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.05em;
+
+}
+
+
+.hero-card-content h3 span {
+
+    color: var(--accent);
+
+}
+
+
+/* =====================================================
+   HERO CARD TECHNOLOGIES
+===================================================== */
+
+.hero-card-bottom {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.hero-card-bottom span {
+
+    padding: 6px 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50px;
+
+    color: var(--text-muted);
+
+    font-size: 0.7rem;
+
+}
+
+
+/* =====================================================
+   HERO RESPONSIVE — TABLET
 ===================================================== */
 
 @media (max-width: 900px) {
@@ -227,11 +729,93 @@
 }
 
 
+/* =====================================================
+   MOBILE NAVIGATION
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 78px;
+
+        left: 0;
+
+        width: 100%;
+
+        padding: 25px;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+        background: rgba(15, 16, 23, 0.97);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 14px;
+
+        backdrop-filter: blur(18px);
+
+    }
+
+
+    .nav-links.open {
+
+        display: flex;
+
+    }
+
+
+    .menu-toggle {
+
+        display: block;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE HERO
+===================================================== */
+
 @media (max-width: 600px) {
+
+    .navbar {
+
+        padding: 12px 0;
+
+    }
+
+
+    .nav-container {
+
+        height: 60px;
+
+        padding: 0 18px;
+
+    }
+
 
     .hero {
 
-        padding-top: 130px;
+        padding-top: 140px;
+
+        padding-bottom: 70px;
+
+    }
+
+
+    .hero-container {
+
+        width: min(92%, 1200px);
 
     }
 
@@ -277,12 +861,21 @@
 
         min-height: 350px;
 
+        padding: 25px;
+
     }
 
 
     .hero-card-content h3 {
 
         font-size: 2rem;
+
+    }
+
+
+    .code-symbol {
+
+        font-size: 2.5rem;
 
     }
 
