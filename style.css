@@ -1,60 +1,11 @@
 /* =====================================================
-   BASIC SETTINGS
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: #08090d;
-    color: #f5f5f7;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-
-/* =====================================================
-   COLORS
-===================================================== */
-
-:root {
-    --background: #08090d;
-    --text: #f5f5f7;
-    --text-muted: #a5a8b3;
-    --accent: #8b7cff;
-    --border: #292c37;
-}
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.container {
-    width: min(100% - 48px, 1180px);
-    margin: 0 auto;
-}
-
-
-/* =====================================================
-   NAVIGATION
+   NAVIGATION BAR
 ===================================================== */
 
 .navbar {
+
     position: fixed;
+
     top: 0;
     left: 0;
 
@@ -62,20 +13,39 @@ a {
 
     z-index: 1000;
 
-    background-color: rgba(8, 9, 13, 0.95);
+    padding: 18px 0;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 
+/* Main navigation container */
+
 .nav-container {
-    height: 76px;
+
+    width: min(92%, 1200px);
+
+    height: 64px;
+
+    margin: 0 auto;
+
+    padding: 0 24px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
+
+    background: rgba(15, 16, 23, 0.80);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
 }
 
 
@@ -84,16 +54,22 @@ a {
 ===================================================== */
 
 .logo {
-    font-size: 1.5rem;
 
-    font-weight: 800;
+    color: #ffffff;
 
-    letter-spacing: -0.05em;
+    font-size: 1.35rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.04em;
+
 }
 
 
 .logo span {
-    color: var(--accent);
+
+    color: #8b7cff;
+
 }
 
 
@@ -101,45 +77,121 @@ a {
    NAVIGATION LINKS
 ===================================================== */
 
-nav {
+.nav-links {
+
     display: flex;
 
     align-items: center;
 
-    gap: 30px;
+    gap: 28px;
+
 }
 
 
-nav a {
-    color: var(--text-muted);
+.nav-link {
 
-    font-size: 0.9rem;
+    position: relative;
+
+    color: #a5a8b3;
+
+    font-size: 0.85rem;
 
     font-weight: 500;
 
     transition: color 0.25s ease;
+
 }
 
 
-nav a:hover {
-    color: var(--text);
+.nav-link:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* Active link */
+
+.nav-link.active {
+
+    color: #ffffff;
+
+}
+
+
+/* Active indicator */
+
+.nav-link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -10px;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #8b7cff;
+
+    transform: translateX(-50%);
+
 }
 
 
 /* =====================================================
-   MOBILE MENU BUTTON
+   RESUME BUTTON
+===================================================== */
+
+.resume-btn {
+
+    padding: 9px 17px;
+
+    border: 1px solid rgba(139, 124, 255, 0.55);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.resume-btn:hover {
+
+    background: #8b7cff;
+
+    border-color: #8b7cff;
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
 ===================================================== */
 
 .menu-toggle {
+
     display: none;
 
     background: transparent;
 
     border: none;
 
-    color: var(--text);
+    color: #ffffff;
 
     font-size: 1.5rem;
 
     cursor: pointer;
+
 }
