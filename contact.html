@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Shishir Dash - CS Student, Developer and Researcher. Get in touch for collaborations, projects, or research.">
+    <title>Contact | Shishir Dash</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION BAR
+    ====================================================== -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Shishir<span>.</span></a>
+
+            <nav class="nav-links" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="myproject.html" class="nav-link">My Projects</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="#" class="resume-btn">Resume</a>
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- =================================================
+             PAGE HERO
+        ================================================== -->
+        <section class="page-hero">
+            <div class="container">
+                <p class="section-label">GET IN TOUCH</p>
+                <h1>Let's build something <br><span>extraordinary together.</span></h1>
+                <p class="page-intro">
+                    Whether you want to discuss research collaborations, technical projects, software ideas, or simply connect, feel free to drop a message.
+                </p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             CONTACT SECTION (FORM & DETAILS)
+        ================================================== -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    
+                    <!-- LEFT SIDE: Contact Form -->
+                    <div class="contact-card">
+                        <h2>Send a Message</h2>
+                        <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault();">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Research Collaboration" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or inquiry..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- RIGHT SIDE: Direct Info & Social Links -->
+                    <div class="contact-info-card">
+                        <h2>Direct Channels</h2>
+                        <p class="info-desc">I am actively open to research opportunities, open-source projects, and technical engineering work.</p>
+
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">Email</span>
+                                <a href="mailto:shishir.dash@example.com" class="info-value">shishir.dash@example.com</a>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Available Globally / Remote</span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="info-label">Status</span>
+                                <span class="info-value accent-text">Open for Collaborations</span>
+                            </div>
+                        </div>
+
+                        <div class="social-connect">
+                            <span class="info-label">Connect Online</span>
+                            <div class="hero-social">
+                                <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                <a href="#" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+                                <a href="#" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Shishir Dash. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
