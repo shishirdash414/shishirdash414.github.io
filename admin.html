@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots"
+          content="noindex, nofollow">
+
+    <title>Admin | Shishir Dash</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- LOGIN PAGE -->
+
+    <main class="admin-wrapper"
+          id="loginSection">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                Shishir<span>.</span>
+            </div>
+
+
+            <p class="login-label">
+                PRIVATE AREA
+            </p>
+
+
+            <h1>
+                Admin Login
+            </h1>
+
+
+            <p class="login-description">
+
+                Sign in to manage your projects
+                and research.
+
+            </p>
+
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit"
+                        class="login-button">
+
+                    Login
+
+                </button>
+
+
+                <p class="error-message"
+                   id="loginError">
+                </p>
+
+
+            </form>
+
+
+            <a href="index.html"
+               class="back-link">
+
+                ← Back to portfolio
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ADMIN DASHBOARD -->
+
+    <main class="dashboard"
+          id="dashboardSection"
+          style="display: none;">
+
+
+        <header class="dashboard-header">
+
+
+            <div>
+
+                <p class="dashboard-label">
+                    PRIVATE CMS
+                </p>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+            </div>
+
+
+            <button id="logoutButton"
+                    class="logout-button">
+
+                Logout
+
+            </button>
+
+
+        </header>
+
+
+
+        <section class="dashboard-content">
+
+
+            <div class="welcome-card">
+
+                <p>
+                    Welcome back.
+                </p>
+
+                <h2>
+                    Manage your portfolio.
+                </h2>
+
+                <span id="userEmail"></span>
+
+            </div>
+
+
+
+            <div class="management-grid">
+
+
+                <a href="#"
+                   class="management-card">
+
+                    <span class="management-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Projects
+                    </h3>
+
+                    <p>
+                        Add and manage your
+                        software, ML, IoT and
+                        web projects.
+                    </p>
+
+                    <span class="management-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a href="#"
+                   class="management-card">
+
+                    <span class="management-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Research
+                    </h3>
+
+                    <p>
+                        Add and manage your
+                        research work,
+                        publications and studies.
+                    </p>
+
+                    <span class="management-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <script type="module"
+            src="admin.js"></script>
+
+</body>
+
+</html>
