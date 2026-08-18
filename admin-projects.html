@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots"
+          content="noindex, nofollow">
+
+    <meta name="description"
+          content="Private project management dashboard">
+
+    <title>Projects | Shishir Dash CMS</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+
+
+        .project-page {
+
+            min-height: 100vh;
+
+            padding: 50px 7%;
+
+        }
+
+
+        .project-header {
+
+            max-width: 1100px;
+
+            margin: 0 auto 50px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding-bottom: 30px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+
+        .project-header-label {
+
+            margin-bottom: 12px;
+
+            color: var(--accent);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2em;
+
+        }
+
+
+        .project-header h1 {
+
+            font-size: clamp(2.2rem, 5vw, 4rem);
+
+            line-height: 1;
+
+            letter-spacing: -0.06em;
+
+        }
+
+
+        .project-header p {
+
+            max-width: 500px;
+
+            margin-top: 15px;
+
+            color: var(--muted);
+
+            font-size: 0.9rem;
+
+            line-height: 1.7;
+
+        }
+
+
+        .dashboard-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 10px 17px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            color: #ffffff;
+
+            font-size: 0.8rem;
+
+            white-space: nowrap;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .dashboard-link:hover {
+
+            border-color: var(--accent);
+
+            color: var(--accent);
+
+        }
+
+
+
+        .project-form-container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+        }
+
+
+        .form-heading {
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .form-heading h2 {
+
+            margin-bottom: 8px;
+
+            font-size: 1.7rem;
+
+            letter-spacing: -0.04em;
+
+        }
+
+
+        .form-heading p {
+
+            color: var(--muted);
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .project-form {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+
+        }
+
+
+        .project-form .full-width {
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .project-form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        .project-form-group label {
+
+            margin-bottom: 9px;
+
+            color: #d7d8df;
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+
+        }
+
+
+        .project-form-group input,
+
+        .project-form-group select,
+
+        .project-form-group textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #0d0f15;
+
+            color: #ffffff;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 0.88rem;
+
+            transition: border-color 0.25s ease;
+
+        }
+
+
+        .project-form-group input:focus,
+
+        .project-form-group select:focus,
+
+        .project-form-group textarea:focus {
+
+            border-color: var(--accent);
+
+        }
+
+
+        .project-form-group textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+
+        }
+
+
+        .project-form-group select {
+
+            cursor: pointer;
+
+        }
+
+
+        .project-form-group select option {
+
+            background: #0d0f15;
+
+            color: #ffffff;
+
+        }
+
+
+      
+
+        .form-help {
+
+            margin-top: 7px;
+
+            color: #777b88;
+
+            font-size: 0.72rem;
+
+        }
+
+
+      
+
+        .featured-wrapper {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 15px 0;
+
+        }
+
+
+        .featured-wrapper input {
+
+            width: 17px;
+
+            height: 17px;
+
+            accent-color: var(--accent);
+
+            cursor: pointer;
+
+        }
+
+
+        .featured-wrapper label {
+
+            margin: 0;
+
+            color: #d7d8df;
+
+            font-size: 0.85rem;
+
+            cursor: pointer;
+
+        }
+
+
+
+        .form-actions {
+
+            grid-column: 1 / -1;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 10px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+
+        .save-project-button {
+
+            padding: 13px 25px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #08090d;
+
+            font-size: 0.85rem;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .save-project-button:hover {
+
+            background: var(--accent);
+
+            color: #ffffff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .clear-button {
+
+            padding: 12px 20px;
+
+            background: transparent;
+
+            color: var(--muted);
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            font-size: 0.85rem;
+
+            cursor: pointer;
+
+        }
+
+
+        .clear-button:hover {
+
+            color: #ffffff;
+
+            border-color: #ffffff;
+
+        }
+
+
+        .form-message {
+
+            grid-column: 1 / -1;
+
+            min-height: 20px;
+
+            font-size: 0.8rem;
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .project-page {
+
+                padding: 35px 5%;
+
+            }
+
+
+            .project-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .project-form-container {
+
+                padding: 25px;
+
+            }
+
+
+            .project-form {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .project-form .full-width {
+
+                grid-column: auto;
+
+            }
+
+
+            .form-actions {
+
+                grid-column: auto;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .save-project-button,
+
+            .clear-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+
+    <main class="project-page">
+
+
+        <header class="project-header">
+
+
+            <div>
+
+                <p class="project-header-label">
+                    PRIVATE CMS
+                </p>
+
+
+                <h1>
+                    Projects
+                </h1>
+
+
+                <p>
+
+                    Add and manage the projects
+                    displayed on your portfolio.
+
+                </p>
+
+            </div>
+
+
+            <a href="admin.html"
+               class="dashboard-link">
+
+                ← Dashboard
+
+            </a>
+
+
+        </header>
+
+
+
+        <section class="project-form-container">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Add New Project
+                </h2>
+
+                <p>
+                    Enter the details of your project below.
+                </p>
+
+            </div>
+
+
+
+            <form
+                class="project-form"
+                id="projectForm">
+
+
+                <!-- PROJECT TITLE -->
+
+                <div class="project-form-group">
+
+                    <label for="projectTitle">
+                        Project Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectTitle"
+                        placeholder="e.g. AirSense"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="project-form-group">
+
+                    <label for="projectCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="projectCategory"
+                        required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Software">
+                            Software
+                        </option>
+
+                        <option value="Machine Learning">
+                            Machine Learning
+                        </option>
+
+                        <option value="IoT">
+                            Internet of Things
+                        </option>
+
+                        <option value="Web">
+                            Web Development
+                        </option>
+
+                        <option value="Mobile">
+                            Mobile Development
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="project-form-group full-width">
+
+                    <label for="projectDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="projectDescription"
+                        placeholder="Describe what the project does, the problem it solves, and your contribution."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+
+                <!-- TECHNOLOGIES -->
+
+                <div class="project-form-group full-width">
+
+                    <label for="projectTechnologies">
+                        Technologies
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectTechnologies"
+                        placeholder="Python, Flask, LSTM, JavaScript"
+                    >
+
+                    <span class="form-help">
+
+                        Separate technologies with commas.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- GITHUB -->
+
+                <div class="project-form-group">
+
+                    <label for="projectGithub">
+                        GitHub URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="projectGithub"
+                        placeholder="https://github.com/..."
+                    >
+
+                </div>
+
+
+
+                <!-- LIVE DEMO -->
+
+                <div class="project-form-group">
+
+                    <label for="projectDemo">
+                        Live Demo URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="projectDemo"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+
+                <!-- IMAGE -->
+
+                <div class="project-form-group full-width">
+
+                    <label for="projectImage">
+                        Project Image URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="projectImage"
+                        placeholder="https://..."
+                    >
+
+                    <span class="form-help">
+
+                        We'll add direct image uploading through
+                        Firebase Storage later.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- FEATURED -->
+
+                <div class="project-form-group full-width">
+
+                    <div class="featured-wrapper">
+
+                        <input
+                            type="checkbox"
+                            id="projectFeatured"
+                        >
+
+                        <label for="projectFeatured">
+
+                            Feature this project on my portfolio
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <p
+                    class="form-message"
+                    id="formMessage">
+                </p>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="submit"
+                        class="save-project-button">
+
+                        Save Project
+
+                    </button>
+
+
+                    <button
+                        type="reset"
+                        class="clear-button">
+
+                        Clear
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script type="module"
+            src="admin-projects.js">
+    </script>
+
+
+</body>
+
+</html>
