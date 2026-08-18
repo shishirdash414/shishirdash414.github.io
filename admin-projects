@@ -1,0 +1,177 @@
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    auth
+} from "./firebase-config.js";
+
+const db = getFirestore();
+
+const projectForm =
+    document.getElementById("projectForm");
+
+const formMessage =
+    document.getElementById("formMessage");
+
+
+onAuthStateChanged(auth, (user) => {
+
+    if (!user) {
+
+        // User is not logged in.
+        // Send them back to the admin login.
+
+        window.location.href = "admin.html";
+
+        return;
+    }
+
+});
+
+
+projectForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    const user = auth.currentUser;
+
+
+    if (!user) {
+
+        formMessage.textContent =
+            "You must be logged in to add a project.";
+
+        formMessage.style.color = "#ff7070";
+
+        return;
+    }
+
+
+    const title =
+        document.getElementById("projectTitle")
+            .value
+            .trim();
+
+
+    const category =
+        document.getElementById("projectCategory")
+            .value;
+
+
+    const description =
+        document.getElementById("projectDescription")
+            .value
+            .trim();
+
+
+    const technologiesInput =
+        document.getElementById("projectTechnologies")
+            .value
+            .trim();
+
+
+    const github =
+        document.getElementById("projectGithub")
+            .value
+            .trim();
+
+
+    const demo =
+        document.getElementById("projectDemo")
+            .value
+            .trim();
+
+
+    const image =
+        document.getElementById("projectImage")
+            .value
+            .trim();
+
+
+    const featured =
+        document.getElementById("projectFeatured")
+            .checked;
+
+
+    const technologies =
+        technologiesInput
+            ? technologiesInput
+                .split(",")
+                .map(item => item.trim())
+                .filter(item => item !== "")
+            : [];
+
+
+    formMessage.textContent =
+        "Saving project...";
+
+    formMessage.style.color =
+        "#a5a8b3";
+
+
+    try {
+
+        await addDoc(
+            collection(db, "projects"),
+            {
+
+                title: title,
+
+                category: category,
+
+                description: description,
+
+                technologies: technologies,
+
+                github: github,
+
+                demo: demo,
+
+                image: image,
+
+                featured: featured,
+
+                createdBy: user.uid,
+
+                createdAt: serverTimestamp()
+
+            }
+        );
+
+
+        formMessage.textContent =
+            "Project saved successfully.";
+
+        formMessage.style.color =
+            "#8b7cff";
+
+
+        projectForm.reset();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error saving project:",
+            error
+        );
+
+
+        formMessage.textContent =
+            "Unable to save the project. Please try again.";
+
+        formMessage.style.color =
+            "#ff7070";
+
+    }
+
+});
