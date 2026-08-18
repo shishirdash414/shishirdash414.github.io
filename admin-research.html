@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots"
+          content="noindex, nofollow">
+
+    <meta name="description"
+          content="Private research management dashboard for Shishir Dash">
+
+    <title>Research | Shishir Dash CMS</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+
+    <style>
+
+        .research-page {
+
+            min-height: 100vh;
+
+            padding: 50px 7%;
+
+        }
+
+
+        .research-header {
+
+            max-width: 1100px;
+
+            margin: 0 auto 50px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding-bottom: 30px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+
+        .research-header-label {
+
+            margin-bottom: 12px;
+
+            color: var(--accent);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2em;
+
+        }
+
+
+        .research-header h1 {
+
+            font-size: clamp(2.5rem, 5vw, 4rem);
+
+            line-height: 1;
+
+            letter-spacing: -0.06em;
+
+        }
+
+
+        .research-header-description {
+
+            max-width: 550px;
+
+            margin-top: 15px;
+
+            color: var(--muted);
+
+            font-size: 0.9rem;
+
+            line-height: 1.7;
+
+        }
+
+
+        .dashboard-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 10px 17px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            color: #ffffff;
+
+            font-size: 0.8rem;
+
+            white-space: nowrap;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .dashboard-link:hover {
+
+            border-color: var(--accent);
+
+            color: var(--accent);
+
+        }
+
+
+        .research-form-container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+        }
+
+
+        .form-heading {
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .form-heading h2 {
+
+            margin-bottom: 8px;
+
+            font-size: 1.7rem;
+
+            letter-spacing: -0.04em;
+
+        }
+
+
+        .form-heading p {
+
+            color: var(--muted);
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .research-form {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+
+        }
+
+
+        .research-form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        .full-width {
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .research-form-group label {
+
+            margin-bottom: 9px;
+
+            color: #d7d8df;
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+
+        }
+
+
+        .research-form-group input,
+
+        .research-form-group select,
+
+        .research-form-group textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #0d0f15;
+
+            color: #ffffff;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 0.88rem;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .research-form-group input:focus,
+
+        .research-form-group select:focus,
+
+        .research-form-group textarea:focus {
+
+            border-color: var(--accent);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(139, 124, 255, 0.08);
+
+        }
+
+
+        .research-form-group textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+
+        }
+
+
+        .research-form-group select {
+
+            cursor: pointer;
+
+        }
+
+
+        .research-form-group select option {
+
+            background: #0d0f15;
+
+            color: #ffffff;
+
+        }
+
+
+        .form-help {
+
+            margin-top: 7px;
+
+            color: #777b88;
+
+            font-size: 0.72rem;
+
+        }
+
+
+        .methods-preview {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .featured-wrapper {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 5px 0;
+
+        }
+
+
+        .featured-wrapper input {
+
+            width: 17px;
+
+            height: 17px;
+
+            margin: 0;
+
+            accent-color: var(--accent);
+
+            cursor: pointer;
+
+        }
+
+
+        .featured-wrapper label {
+
+            margin: 0;
+
+            color: #d7d8df;
+
+            font-size: 0.85rem;
+
+            cursor: pointer;
+
+        }
+
+
+        .form-message {
+
+            grid-column: 1 / -1;
+
+            min-height: 22px;
+
+            margin: 0;
+
+            font-size: 0.8rem;
+
+        }
+
+
+        .form-actions {
+
+            grid-column: 1 / -1;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 10px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+
+        .save-research-button {
+
+            padding: 13px 25px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #08090d;
+
+            font-size: 0.85rem;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .save-research-button:hover:not(:disabled) {
+
+            background: var(--accent);
+
+            color: #ffffff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .save-research-button:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .clear-button {
+
+            padding: 12px 20px;
+
+            background: transparent;
+
+            color: var(--muted);
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            font-size: 0.85rem;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .clear-button:hover {
+
+            color: #ffffff;
+
+            border-color: #ffffff;
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .research-page {
+
+                padding: 35px 5%;
+
+            }
+
+
+            .research-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .research-form-container {
+
+                padding: 25px;
+
+            }
+
+
+            .research-form {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .full-width {
+
+                grid-column: auto;
+
+            }
+
+
+            .form-actions {
+
+                grid-column: auto;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .save-research-button,
+
+            .clear-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="research-page">
+
+
+        <header class="research-header">
+
+
+            <div>
+
+                <p class="research-header-label">
+
+                    PRIVATE CMS
+
+                </p>
+
+
+                <h1>
+
+                    Research
+
+                </h1>
+
+
+                <p class="research-header-description">
+
+                    Add and manage the research work,
+                    publications, studies, and academic
+                    projects that appear on your public
+                    portfolio.
+
+                </p>
+
+            </div>
+
+
+            <a href="admin.html"
+               class="dashboard-link">
+
+                ← Dashboard
+
+            </a>
+
+
+        </header>
+
+
+
+        <section class="research-form-container">
+
+
+            <div class="form-heading">
+
+                <h2>
+
+                    Add New Research
+
+                </h2>
+
+
+                <p>
+
+                    Enter the details of your research
+                    below.
+
+                </p>
+
+            </div>
+
+
+
+            <form
+                class="research-form"
+                id="researchForm">
+
+
+                <!-- TITLE -->
+
+                <div class="research-form-group full-width">
+
+                    <label for="researchTitle">
+
+                        Research Title
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchTitle"
+                        name="title"
+                        placeholder="e.g. Passive Sensing for Early Depression Detection"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- AREA -->
+
+                <div class="research-form-group">
+
+                    <label for="researchArea">
+
+                        Research Area
+
+                    </label>
+
+
+                    <select
+                        id="researchArea"
+                        name="area"
+                        required>
+
+                        <option value="">
+
+                            Select research area
+
+                        </option>
+
+
+                        <option value="Machine Learning">
+
+                            Machine Learning
+
+                        </option>
+
+
+                        <option value="Artificial Intelligence">
+
+                            Artificial Intelligence
+
+                        </option>
+
+
+                        <option value="Deep Learning">
+
+                            Deep Learning
+
+                        </option>
+
+
+                        <option value="Computer Vision">
+
+                            Computer Vision
+
+                        </option>
+
+
+                        <option value="Natural Language Processing">
+
+                            Natural Language Processing
+
+                        </option>
+
+
+                        <option value="IoT">
+
+                            Internet of Things
+
+                        </option>
+
+
+                        <option value="Environmental AI">
+
+                            Environmental AI
+
+                        </option>
+
+
+                        <option value="Mobile Sensing">
+
+                            Mobile Sensing
+
+                        </option>
+
+
+                        <option value="Other">
+
+                            Other
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="research-form-group">
+
+                    <label for="researchStatus">
+
+                        Status
+
+                    </label>
+
+
+                    <select
+                        id="researchStatus"
+                        name="status"
+                        required>
+
+                        <option value="">
+
+                            Select status
+
+                        </option>
+
+
+                        <option value="Ongoing">
+
+                            Ongoing
+
+                        </option>
+
+
+                        <option value="Development">
+
+                            Development
+
+                        </option>
+
+
+                        <option value="Completed">
+
+                            Completed
+
+                        </option>
+
+
+                        <option value="Published">
+
+                            Published
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="research-form-group full-width">
+
+                    <label for="researchDescription">
+
+                        Description
+
+                    </label>
+
+
+                    <textarea
+                        id="researchDescription"
+                        name="description"
+                        placeholder="Describe your research, the problem you are investigating, and your main objective."
+                        required></textarea>
+
+                </div>
+
+
+
+                <!-- FOCUS -->
+
+                <div class="research-form-group">
+
+                    <label for="researchFocus">
+
+                        Research Focus
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchFocus"
+                        name="focus"
+                        placeholder="e.g. Behavioral Sensing"
+                    >
+
+                </div>
+
+
+
+                <!-- DATA SOURCES -->
+
+                <div class="research-form-group">
+
+                    <label for="researchDataSources">
+
+                        Data Sources
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchDataSources"
+                        name="dataSources"
+                        placeholder="GPS, Accelerometer, Screen Interaction"
+                    >
+
+
+                    <span class="form-help">
+
+                        Separate multiple sources with commas.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- MODELS -->
+
+                <div class="research-form-group">
+
+                    <label for="researchModels">
+
+                        Models / Algorithms
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchModels"
+                        name="models"
+                        placeholder="LSTM, Random Forest, XGBoost"
+                    >
+
+
+                    <span class="form-help">
+
+                        Separate multiple models with commas.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- DATASET -->
+
+                <div class="research-form-group">
+
+                    <label for="researchDataset">
+
+                        Dataset
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchDataset"
+                        name="dataset"
+                        placeholder="e.g. StudentLife"
+                    >
+
+                </div>
+
+
+
+                <!-- METHODS -->
+
+                <div class="research-form-group full-width">
+
+                    <label for="researchMethods">
+
+                        Methods / Technologies
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="researchMethods"
+                        name="methods"
+                        placeholder="Python, TensorFlow, LSTM, Time-Series Analysis"
+                    >
+
+
+                    <span class="form-help">
+
+                        Separate technologies with commas.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- RESEARCH DETAILS URL -->
+
+                <div class="research-form-group">
+
+                    <label for="researchUrl">
+
+                        Research Details URL
+
+                    </label>
+
+
+                    <input
+                        type="url"
+                        id="researchUrl"
+                        name="researchUrl"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+
+                <!-- DATASET URL -->
+
+                <div class="research-form-group">
+
+                    <label for="datasetUrl">
+
+                        Dataset URL
+
+                    </label>
+
+
+                    <input
+                        type="url"
+                        id="datasetUrl"
+                        name="datasetUrl"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+
+                <!-- PROJECT URL -->
+
+                <div class="research-form-group">
+
+                    <label for="projectUrl">
+
+                        Related Project URL
+
+                    </label>
+
+
+                    <input
+                        type="url"
+                        id="projectUrl"
+                        name="projectUrl"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+
+                <!-- PUBLICATION -->
+
+                <div class="research-form-group">
+
+                    <label for="publication">
+
+                        Publication / Conference
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="publication"
+                        name="publication"
+                        placeholder="e.g. IEEE Conference 2026"
+                    >
+
+                </div>
+
+
+
+                <!-- YEAR -->
+
+                <div class="research-form-group">
+
+                    <label for="researchYear">
+
+                        Year
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="researchYear"
+                        name="year"
+                        min="2000"
+                        max="2100"
+                        placeholder="2026"
+                    >
+
+                </div>
+
+
+
+                <!-- FEATURED -->
+
+                <div class="research-form-group full-width">
+
+                    <div class="featured-wrapper">
+
+
+                        <input
+                            type="checkbox"
+                            id="researchFeatured"
+                            name="featured"
+                        >
+
+
+                        <label for="researchFeatured">
+
+                            Feature this research on
+                            my portfolio
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <p
+                    class="form-message"
+                    id="formMessage">
+
+                    Checking authentication...
+
+                </p>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="submit"
+                        class="save-research-button"
+                        disabled>
+
+                        Checking login...
+
+                    </button>
+
+
+                    <button
+                        type="reset"
+                        class="clear-button">
+
+                        Clear
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script
+        type="module"
+        src="admin-research.js">
+
+    </script>
+
+
+</body>
+
+</html>
