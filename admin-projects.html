@@ -22,425 +22,610 @@
     <style>
 
         .project-page {
-
             min-height: 100vh;
-
             padding: 50px 7%;
-
         }
 
 
         .project-header {
-
             max-width: 1100px;
-
             margin: 0 auto 50px;
-
             display: flex;
-
             align-items: flex-end;
-
             justify-content: space-between;
-
             gap: 30px;
-
             padding-bottom: 30px;
-
             border-bottom: 1px solid var(--border);
-
         }
 
 
         .project-header-label {
-
             margin-bottom: 12px;
-
             color: var(--accent);
-
             font-size: 0.7rem;
-
             font-weight: 700;
-
             letter-spacing: 0.2em;
-
         }
 
 
         .project-header h1 {
-
             font-size: clamp(2.5rem, 5vw, 4rem);
-
             line-height: 1;
-
             letter-spacing: -0.06em;
-
         }
 
 
         .project-header-description {
-
             max-width: 550px;
-
             margin-top: 15px;
-
             color: var(--muted);
-
             font-size: 0.9rem;
-
             line-height: 1.7;
-
         }
 
 
         .dashboard-link {
-
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
-
             padding: 10px 17px;
-
             border: 1px solid var(--border);
-
             border-radius: 8px;
-
             color: #ffffff;
-
             font-size: 0.8rem;
-
             white-space: nowrap;
-
             transition: all 0.25s ease;
-
         }
 
 
         .dashboard-link:hover {
-
             border-color: var(--accent);
-
             color: var(--accent);
-
         }
 
 
         .project-form-container {
-
             width: 100%;
-
             max-width: 1100px;
-
             margin: 0 auto;
-
             padding: 40px;
-
             background: var(--card);
-
             border: 1px solid var(--border);
-
             border-radius: 20px;
-
         }
 
 
         .form-heading {
-
             margin-bottom: 35px;
-
         }
 
 
         .form-heading h2 {
-
             margin-bottom: 8px;
-
             font-size: 1.7rem;
-
             letter-spacing: -0.04em;
-
         }
 
 
         .form-heading p {
-
             color: var(--muted);
-
             font-size: 0.85rem;
-
         }
 
+
         .project-form {
-
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 22px;
-
         }
 
 
         .project-form-group {
-
             display: flex;
-
             flex-direction: column;
-
         }
 
 
         .full-width {
-
             grid-column: 1 / -1;
-
         }
 
 
         .project-form-group label {
-
             margin-bottom: 9px;
-
             color: #d7d8df;
-
             font-size: 0.82rem;
-
             font-weight: 600;
-
         }
 
 
         .project-form-group input,
-
         .project-form-group select,
-
         .project-form-group textarea {
 
             width: 100%;
-
             padding: 13px 14px;
-
             background: #0d0f15;
-
             color: #ffffff;
-
             border: 1px solid var(--border);
-
             border-radius: 9px;
-
             outline: none;
-
             font-family: inherit;
-
             font-size: 0.88rem;
 
-            transition: border-color 0.25s ease,
-                        box-shadow 0.25s ease;
-
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
 
         .project-form-group input:focus,
-
         .project-form-group select:focus,
-
         .project-form-group textarea:focus {
 
             border-color: var(--accent);
 
-            box-shadow: 0 0 0 3px rgba(139, 124, 255, 0.08);
-
+            box-shadow:
+                0 0 0 3px rgba(139, 124, 255, 0.08);
         }
 
 
         .project-form-group textarea {
-
             min-height: 150px;
-
             resize: vertical;
-
             line-height: 1.6;
-
         }
 
 
         .project-form-group select {
-
             cursor: pointer;
-
         }
 
 
         .project-form-group select option {
-
             background: #0d0f15;
-
             color: #ffffff;
-
         }
 
 
         .form-help {
-
             margin-top: 7px;
-
             color: #777b88;
-
             font-size: 0.72rem;
-
         }
 
+
         .featured-wrapper {
-
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
             padding: 5px 0;
-
         }
 
 
         .featured-wrapper input {
-
             width: 17px;
-
             height: 17px;
-
             margin: 0;
-
             accent-color: var(--accent);
-
             cursor: pointer;
-
         }
 
 
         .featured-wrapper label {
-
             margin: 0;
-
             color: #d7d8df;
-
             font-size: 0.85rem;
-
             cursor: pointer;
-
         }
 
+
         .form-message {
-
             grid-column: 1 / -1;
-
             min-height: 22px;
-
             margin: 0;
-
             font-size: 0.8rem;
-
         }
 
 
         .form-actions {
-
             grid-column: 1 / -1;
-
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
             margin-top: 10px;
-
             padding-top: 25px;
-
             border-top: 1px solid var(--border);
-
         }
 
 
         .save-project-button {
 
             padding: 13px 25px;
-
             border: none;
-
             border-radius: 9px;
-
             background: #ffffff;
-
             color: #08090d;
-
             font-size: 0.85rem;
-
             font-weight: 700;
-
             cursor: pointer;
 
-            transition: all 0.25s ease;
-
+            transition:
+                all 0.25s ease;
         }
 
 
         .save-project-button:hover:not(:disabled) {
-
             background: var(--accent);
-
             color: #ffffff;
-
             transform: translateY(-2px);
-
         }
 
 
         .save-project-button:disabled {
-
             opacity: 0.6;
-
             cursor: not-allowed;
-
         }
 
 
         .clear-button {
 
             padding: 12px 20px;
-
             background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            font-size: 0.85rem;
+            cursor: pointer;
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        .clear-button:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+
+        /* =================================================
+           EXISTING PROJECTS
+        ================================================= */
+
+
+        .existing-projects-container {
+
+            width: 100%;
+            max-width: 1100px;
+            margin: 35px auto 0;
+            padding: 40px;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+
+        .existing-projects-heading {
+            margin-bottom: 30px;
+        }
+
+
+        .existing-projects-heading h2 {
+
+            margin-bottom: 8px;
+
+            font-size: 1.7rem;
+
+            letter-spacing: -0.04em;
+        }
+
+
+        .existing-projects-heading p {
 
             color: var(--muted);
 
+            font-size: 0.85rem;
+        }
+
+
+        .projects-status {
+
+            min-height: 22px;
+
+            margin-bottom: 20px;
+
+            color: var(--muted);
+
+            font-size: 0.8rem;
+        }
+
+
+        .projects-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .project-admin-card {
+
+            padding: 22px;
+
+            background: #0d0f15;
+
             border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            transition:
+                border-color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .project-admin-card:hover {
+
+            border-color: rgba(139, 124, 255, 0.45);
+
+            transform: translateY(-2px);
+        }
+
+
+        .project-card-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 20px;
+        }
+
+
+        .project-card-title {
+
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: 1.15rem;
+
+            letter-spacing: -0.02em;
+        }
+
+
+        .project-card-category {
+
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding: 4px 9px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            color: var(--accent);
+
+            font-size: 0.68rem;
+
+            font-weight: 600;
+        }
+
+
+        .featured-badge {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: rgba(139, 124, 255, 0.12);
+
+            color: var(--accent);
+
+            font-size: 0.68rem;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .project-card-description {
+
+            margin: 16px 0;
+
+            color: var(--muted);
+
+            font-size: 0.82rem;
+
+            line-height: 1.7;
+        }
+
+
+        .project-card-technologies {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .technology-tag {
+
+            padding: 4px 8px;
+
+            background: #151820;
+
+            border: 1px solid var(--border);
+
+            border-radius: 6px;
+
+            color: #bfc1ca;
+
+            font-size: 0.68rem;
+        }
+
+
+        .project-card-links {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .project-card-link {
+
+            color: #bfc1ca;
+
+            font-size: 0.72rem;
+
+            text-decoration: none;
+        }
+
+
+        .project-card-link:hover {
+
+            color: var(--accent);
+        }
+
+
+        .project-card-actions {
+
+            display: flex;
+
+            gap: 9px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid var(--border);
+        }
+
+
+        .edit-project-button,
+        .delete-project-button {
+
+            padding: 9px 15px;
+
+            border-radius: 7px;
+
+            font-size: 0.75rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+
+        .edit-project-button {
+
+            background: transparent;
+
+            color: #ffffff;
+
+            border: 1px solid var(--border);
+        }
+
+
+        .edit-project-button:hover {
+
+            border-color: var(--accent);
+
+            color: var(--accent);
+        }
+
+
+        .delete-project-button {
+
+            background: transparent;
+
+            color: #ff7070;
+
+            border: 1px solid rgba(255, 112, 112, 0.25);
+        }
+
+
+        .delete-project-button:hover {
+
+            background: rgba(255, 112, 112, 0.08);
+
+            border-color: #ff7070;
+        }
+
+
+        .empty-projects {
+
+            padding: 35px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            border: 1px dashed var(--border);
+
+            border-radius: 12px;
+
+            font-size: 0.85rem;
+        }
+
+
+        .cancel-edit-button {
+
+            display: none;
+
+            padding: 12px 20px;
+
+            background: transparent;
+
+            color: #ff7070;
+
+            border: 1px solid rgba(255, 112, 112, 0.3);
 
             border-radius: 9px;
 
             font-size: 0.85rem;
 
             cursor: pointer;
-
-            transition: all 0.25s ease;
-
         }
 
 
-        .clear-button:hover {
+        .cancel-edit-button:hover {
 
-            color: #ffffff;
+            border-color: #ff7070;
 
-            border-color: #ffffff;
-
+            background: rgba(255, 112, 112, 0.06);
         }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
 
         @media (max-width: 700px) {
 
             .project-page {
-
                 padding: 35px 5%;
-
             }
 
 
@@ -451,28 +636,24 @@
                 align-items: flex-start;
 
                 margin-bottom: 35px;
-
             }
 
 
-            .project-form-container {
+            .project-form-container,
+            .existing-projects-container {
 
                 padding: 25px;
-
             }
 
 
             .project-form {
 
                 grid-template-columns: 1fr;
-
             }
 
 
             .full-width {
-
                 grid-column: auto;
-
             }
 
 
@@ -483,16 +664,35 @@
                 flex-direction: column;
 
                 align-items: stretch;
-
             }
 
 
             .save-project-button,
-
-            .clear-button {
+            .clear-button,
+            .cancel-edit-button {
 
                 width: 100%;
+            }
 
+
+            .project-card-top {
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+
+            .project-card-actions {
+
+                flex-direction: column;
+            }
+
+
+            .edit-project-button,
+            .delete-project-button {
+
+                width: 100%;
             }
 
         }
@@ -508,8 +708,11 @@
     <main class="project-page">
 
 
-        <header class="project-header">
+        <!-- =================================================
+             HEADER
+        ================================================= -->
 
+        <header class="project-header">
 
             <div>
 
@@ -544,18 +747,25 @@
         </header>
 
 
+
+        <!-- =================================================
+             ADD / EDIT PROJECT FORM
+        ================================================= -->
+
         <section class="project-form-container">
 
 
             <div class="form-heading">
 
-                <h2>
+                <h2 id="formHeading">
                     Add New Project
                 </h2>
 
 
-                <p>
+                <p id="formSubheading">
+
                     Enter the details of your project below.
+
                 </p>
 
             </div>
@@ -565,6 +775,7 @@
             <form
                 class="project-form"
                 id="projectForm">
+
 
                 <div class="project-form-group">
 
@@ -582,6 +793,7 @@
                     >
 
                 </div>
+
 
 
                 <div class="project-form-group">
@@ -646,6 +858,7 @@
                 </div>
 
 
+
                 <div class="project-form-group full-width">
 
                     <label for="projectTechnologies">
@@ -706,6 +919,7 @@
                 </div>
 
 
+
                 <div class="project-form-group full-width">
 
                     <label for="projectImage">
@@ -755,6 +969,7 @@
                 </div>
 
 
+
                 <p
                     class="form-message"
                     id="formMessage">
@@ -762,6 +977,7 @@
                     Checking authentication...
 
                 </p>
+
 
 
                 <div class="form-actions">
@@ -786,10 +1002,63 @@
                     </button>
 
 
+                    <button
+                        type="button"
+                        class="cancel-edit-button"
+                        id="cancelEditButton">
+
+                        Cancel Edit
+
+                    </button>
+
+
                 </div>
 
 
             </form>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXISTING PROJECTS
+        ================================================= -->
+
+        <section class="existing-projects-container">
+
+
+            <div class="existing-projects-heading">
+
+                <h2>
+                    Existing Projects
+                </h2>
+
+
+                <p>
+                    Projects currently stored in Firebase Firestore.
+                </p>
+
+            </div>
+
+
+
+            <p
+                class="projects-status"
+                id="projectsStatus">
+
+                Loading projects...
+
+            </p>
+
+
+
+            <div
+                class="projects-list"
+                id="projectsList">
+
+            </div>
 
 
         </section>
