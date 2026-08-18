@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Projects by Shishir Dash">
+
+    <title>Projects | Shishir Dash</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        :root {
+
+            --background: #08090d;
+            --card: #101218;
+            --border: #252832;
+            --text: #ffffff;
+            --muted: #9296a5;
+            --accent: #8b7cff;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background: var(--background);
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+
+            border-bottom:
+                1px solid var(--border);
+
+            padding:
+                20px 7%;
+
+        }
+
+
+        .nav-container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        .logo {
+
+            font-size: 1.2rem;
+
+            font-weight: 800;
+
+        }
+
+
+        .logo span {
+            color: var(--accent);
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            list-style: none;
+
+        }
+
+
+        .nav-links a {
+
+            color: var(--muted);
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .nav-links a:hover,
+        .nav-links .active {
+
+            color: var(--accent);
+
+        }
+
+
+        /* ================================
+           PAGE
+        ================================= */
+
+        .projects-page {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                90px 7%;
+
+        }
+
+
+        .page-label {
+
+            color: var(--accent);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2em;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(3rem, 7vw, 5rem);
+
+            letter-spacing:
+                -0.06em;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .intro {
+
+            max-width: 650px;
+
+            color: var(--muted);
+
+            line-height: 1.8;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        /* ================================
+           STATUS
+        ================================= */
+
+        #projectsStatus {
+
+            color: var(--muted);
+
+            font-size: 0.8rem;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* ================================
+           GRID
+        ================================= */
+
+        .projects-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        /* ================================
+           CARD
+        ================================= */
+
+        .project-card {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+
+        }
+
+
+        .project-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                var(--accent);
+
+        }
+
+
+        .project-image {
+
+            width: 100%;
+
+            height: 240px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        .no-image {
+
+            height: 240px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #0d0f15;
+
+            color: #555a68;
+
+            font-size: 0.8rem;
+
+        }
+
+
+        .project-content {
+
+            padding: 25px;
+
+        }
+
+
+        .category {
+
+            color: var(--accent);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.1em;
+
+        }
+
+
+        .project-title {
+
+            margin:
+                10px 0 12px;
+
+            font-size: 1.5rem;
+
+        }
+
+
+        .project-description {
+
+            color: var(--muted);
+
+            font-size: 0.85rem;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* ================================
+           TECHNOLOGIES
+        ================================= */
+
+        .technologies {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .technology {
+
+            padding:
+                5px 9px;
+
+            background:
+                #171922;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 6px;
+
+            color: #c1c3cc;
+
+            font-size: 0.68rem;
+
+        }
+
+
+        /* ================================
+           BUTTONS
+        ================================= */
+
+        .project-links {
+
+            display: flex;
+
+            gap: 10px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid var(--border);
+
+        }
+
+
+        .project-link {
+
+            padding:
+                9px 14px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 7px;
+
+            font-size: 0.75rem;
+
+            transition:
+                all 0.2s ease;
+
+        }
+
+
+        .project-link:hover {
+
+            border-color:
+                var(--accent);
+
+            color:
+                var(--accent);
+
+        }
+
+
+        .featured {
+
+            display: inline-block;
+
+            margin-left: 8px;
+
+            padding:
+                4px 8px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(139,124,255,0.15);
+
+            color:
+                var(--accent);
+
+            font-size:
+                0.65rem;
+
+        }
+
+
+        /* ================================
+           LOADING / EMPTY
+        ================================= */
+
+        .message {
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                60px 20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 750px) {
+
+            .projects-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .nav-links {
+
+                gap:
+                    12px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    0.7rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="logo">
+
+                Shishir<span>.</span>
+
+            </a>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="skills.html">
+                        Skills
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="myproject.html"
+                        class="active">
+
+                        Projects
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="research.html">
+                        Research
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================================
+         PROJECTS
+    ================================= -->
+
+    <main class="projects-page">
+
+
+        <p class="page-label">
+            MY WORK
+        </p>
+
+
+        <h1>
+            Projects
+        </h1>
+
+
+        <p class="intro">
+
+            A collection of software,
+            machine learning, web development,
+            and research projects.
+
+        </p>
+
+
+        <p id="projectsStatus">
+            Loading projects...
+        </p>
+
+
+        <section
+            class="projects-grid"
+            id="projectsGrid">
+
+            <div class="message">
+
+                Loading projects...
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================================
+         FIREBASE
+    ================================= -->
+
+    <script type="module">
+
+        import {
+            collection,
+            getDocs
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+        import {
+            db
+        }
+        from "./firebase-config.js";
+
+
+
+        const projectsGrid =
+            document.getElementById(
+                "projectsGrid"
+            );
+
+
+        const projectsStatus =
+            document.getElementById(
+                "projectsStatus"
+            );
+
+
+
+        async function loadProjects() {
+
+            try {
+
+                const snapshot =
+                    await getDocs(
+                        collection(
+                            db,
+                            "projects"
+                        )
+                    );
+
+
+                console.log(
+                    "Projects found:",
+                    snapshot.size
+                );
+
+
+                if (snapshot.empty) {
+
+                    projectsStatus.textContent =
+                        "No projects available.";
+
+
+                    projectsGrid.innerHTML = `
+
+                        <div class="message">
+
+                            No projects have been
+                            published yet.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                const projects = [];
+
+
+                snapshot.forEach(
+                    documentSnapshot => {
+
+                        projects.push({
+
+                            id:
+                                documentSnapshot.id,
+
+                            ...documentSnapshot.data()
+
+                        });
+
+                    }
+                );
+
+
+                /*
+                 * Featured projects first.
+                 * Newest projects after that.
+                 */
+
+                projects.sort(
+                    (a, b) => {
+
+                        if (
+                            a.featured === true &&
+                            b.featured !== true
+                        ) {
+
+                            return -1;
+
+                        }
+
+
+                        if (
+                            b.featured === true &&
+                            a.featured !== true
+                        ) {
+
+                            return 1;
+
+                        }
+
+
+                        const dateA =
+                            a.createdAt?.toMillis
+                                ? a.createdAt.toMillis()
+                                : 0;
+
+
+                        const dateB =
+                            b.createdAt?.toMillis
+                                ? b.createdAt.toMillis()
+                                : 0;
+
+
+                        return dateB - dateA;
+
+                    }
+                );
+
+
+                projectsStatus.textContent =
+                    `${projects.length} project${projects.length === 1 ? "" : "s"}`;
+
+
+                projectsGrid.innerHTML = "";
+
+
+                projects.forEach(
+                    project => {
+
+                        renderProject(
+                            project
+                        );
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Firestore error:",
+                    error
+                );
+
+
+                projectsStatus.textContent =
+                    "Could not load projects.";
+
+
+                projectsGrid.innerHTML = `
+
+                    <div class="message">
+
+                        Could not load projects.
+
+                        <br><br>
+
+                        ${escapeHTML(
+                            error.message
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        function renderProject(project) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "project-card";
+
+
+            let imageHTML;
+
+
+            if (project.image) {
+
+                imageHTML = `
+
+                    <img
+                        src="${escapeAttribute(
+                            project.image
+                        )}"
+                        alt="${escapeAttribute(
+                            project.title ||
+                            "Project"
+                        )}"
+                        class="project-image"
+                        loading="lazy"
+                    >
+
+                `;
+
+            } else {
+
+                imageHTML = `
+
+                    <div class="no-image">
+
+                        PROJECT
+
+                    </div>
+
+                `;
+
+            }
+
+
+            const featuredHTML =
+                project.featured === true
+
+                    ? `
+
+                        <span class="featured">
+
+                            ★ Featured
+
+                        </span>
+
+                    `
+
+                    : "";
+
+
+            const technologies =
+                Array.isArray(
+                    project.technologies
+                )
+                    ? project.technologies
+                    : [];
+
+
+            const technologiesHTML =
+                technologies
+                    .map(
+                        technology => `
+
+                            <span class="technology">
+
+                                ${escapeHTML(
+                                    technology
+                                )}
+
+                            </span>
+
+                        `
+                    )
+                    .join("");
+
+
+            let linksHTML = "";
+
+
+            if (project.github) {
+
+                linksHTML += `
+
+                    <a
+                        href="${escapeAttribute(
+                            project.github
+                        )}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link">
+
+                        GitHub ↗
+
+                    </a>
+
+                `;
+
+            }
+
+
+            if (project.demo) {
+
+                linksHTML += `
+
+                    <a
+                        href="${escapeAttribute(
+                            project.demo
+                        )}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link">
+
+                        Live Demo ↗
+
+                    </a>
+
+                `;
+
+            }
+
+
+            card.innerHTML = `
+
+                ${imageHTML}
+
+
+                <div class="project-content">
+
+
+                    <div class="category">
+
+                        ${escapeHTML(
+                            project.category ||
+                            "Project"
+                        )}
+
+                        ${featuredHTML}
+
+                    </div>
+
+
+                    <h2 class="project-title">
+
+                        ${escapeHTML(
+                            project.title ||
+                            "Untitled Project"
+                        )}
+
+                    </h2>
+
+
+                    <p class="project-description">
+
+                        ${escapeHTML(
+                            project.description ||
+                            ""
+                        )}
+
+                    </p>
+
+
+                    ${
+                        technologiesHTML
+
+                            ? `
+
+                                <div class="technologies">
+
+                                    ${technologiesHTML}
+
+                                </div>
+
+                            `
+
+                            : ""
+                    }
+
+
+                    ${
+                        linksHTML
+
+                            ? `
+
+                                <div class="project-links">
+
+                                    ${linksHTML}
+
+                                </div>
+
+                            `
+
+                            : ""
+                    }
+
+                </div>
+
+            `;
+
+
+            projectsGrid.appendChild(
+                card
+            );
+
+        }
+
+
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
+
+        }
+
+
+        function escapeAttribute(value) {
+
+            return escapeHTML(value);
+
+        }
+
+
+        loadProjects();
+
+    </script>
+
+
+</body>
+
+</html>
