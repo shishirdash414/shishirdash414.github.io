@@ -1,9 +1,19 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCZoK2Ulrml9l62kkGk98ZDbbehWSIDclo",
+
+    apiKey: "AIzaSyCZoK2Ulrml9l62kkGk98ZDbbehWSIDclo",
   authDomain: "shishir-portfolio-cms.firebaseapp.com",
   projectId: "shishir-portfolio-cms",
   storageBucket: "shishir-portfolio-cms.firebasestorage.app",
@@ -13,9 +23,20 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+
+const auth =
+    getAuth(app);
 
 
-export { app, auth };
+const db =
+    getFirestore(app);
+
+
+export {
+    app,
+    auth,
+    db
+};
