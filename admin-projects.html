@@ -1,807 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-<head>
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-    <meta charset="UTF-8">
+import { auth } from "./firebase-config.js";
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
-    <meta name="robots"
-          content="noindex, nofollow">
+const db = getFirestore();
 
-    <meta name="description"
-          content="Private project management dashboard">
+const projectForm = document.getElementById("projectForm");
+const formMessage = document.getElementById("formMessage");
 
-    <title>Projects | Shishir Dash CMS</title>
 
-    <link rel="stylesheet" href="admin.css">
+console.log("admin-projects.js loaded");
 
-    <style>
 
+onAuthStateChanged(auth, (user) => {
 
-        .project-page {
+    console.log("Auth state:", user);
 
-            min-height: 100vh;
+    if (!user) {
 
-            padding: 50px 7%;
+        console.log("No authenticated user.");
 
-        }
+        window.location.href = "admin.html";
 
+        return;
+    }
 
-        .project-header {
+    console.log("Logged in as:", user.email);
 
-            max-width: 1100px;
+});
 
-            margin: 0 auto 50px;
 
-            display: flex;
+projectForm.addEventListener("submit", async (event) => {
 
-            align-items: flex-end;
+    event.preventDefault();
 
-            justify-content: space-between;
+    console.log("Save Project button clicked");
 
-            gap: 30px;
 
-            padding-bottom: 30px;
+    const user = auth.currentUser;
 
-            border-bottom: 1px solid var(--border);
 
-        }
+    if (!user) {
 
+        console.error("No authenticated user.");
 
-        .project-header-label {
+        formMessage.textContent =
+            "You are not logged in.";
 
-            margin-bottom: 12px;
+        formMessage.style.color = "#ff7070";
 
-            color: var(--accent);
+        return;
+    }
 
-            font-size: 0.7rem;
 
-            font-weight: 700;
+    const title =
+        document.getElementById("projectTitle").value.trim();
 
-            letter-spacing: 0.2em;
+    const category =
+        document.getElementById("projectCategory").value;
 
-        }
+    const description =
+        document.getElementById("projectDescription").value.trim();
 
+    const technologiesInput =
+        document.getElementById("projectTechnologies").value.trim();
 
-        .project-header h1 {
+    const github =
+        document.getElementById("projectGithub").value.trim();
 
-            font-size: clamp(2.2rem, 5vw, 4rem);
+    const demo =
+        document.getElementById("projectDemo").value.trim();
 
-            line-height: 1;
+    const image =
+        document.getElementById("projectImage").value.trim();
 
-            letter-spacing: -0.06em;
+    const featured =
+        document.getElementById("projectFeatured").checked;
 
-        }
 
+    const technologies = technologiesInput
+        ? technologiesInput
+            .split(",")
+            .map(item => item.trim())
+            .filter(item => item !== "")
+        : [];
 
-        .project-header p {
 
-            max-width: 500px;
-
-            margin-top: 15px;
-
-            color: var(--muted);
-
-            font-size: 0.9rem;
-
-            line-height: 1.7;
-
-        }
-
-
-        .dashboard-link {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            padding: 10px 17px;
-
-            border: 1px solid var(--border);
-
-            border-radius: 8px;
-
-            color: #ffffff;
-
-            font-size: 0.8rem;
-
-            white-space: nowrap;
-
-            transition: all 0.25s ease;
-
-        }
-
-
-        .dashboard-link:hover {
-
-            border-color: var(--accent);
-
-            color: var(--accent);
-
-        }
-
-
-
-        .project-form-container {
-
-            width: 100%;
-
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-            padding: 40px;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-radius: 20px;
-
-        }
-
-
-        .form-heading {
-
-            margin-bottom: 35px;
-
-        }
-
-
-        .form-heading h2 {
-
-            margin-bottom: 8px;
-
-            font-size: 1.7rem;
-
-            letter-spacing: -0.04em;
-
-        }
-
-
-        .form-heading p {
-
-            color: var(--muted);
-
-            font-size: 0.85rem;
-
-        }
-
-
-        .project-form {
-
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 22px;
-
-        }
-
-
-        .project-form .full-width {
-
-            grid-column: 1 / -1;
-
-        }
-
-
-        .project-form-group {
-
-            display: flex;
-
-            flex-direction: column;
-
-        }
-
-
-        .project-form-group label {
-
-            margin-bottom: 9px;
-
-            color: #d7d8df;
-
-            font-size: 0.82rem;
-
-            font-weight: 600;
-
-        }
-
-
-        .project-form-group input,
-
-        .project-form-group select,
-
-        .project-form-group textarea {
-
-            width: 100%;
-
-            padding: 13px 14px;
-
-            background: #0d0f15;
-
-            color: #ffffff;
-
-            border: 1px solid var(--border);
-
-            border-radius: 9px;
-
-            outline: none;
-
-            font-family: inherit;
-
-            font-size: 0.88rem;
-
-            transition: border-color 0.25s ease;
-
-        }
-
-
-        .project-form-group input:focus,
-
-        .project-form-group select:focus,
-
-        .project-form-group textarea:focus {
-
-            border-color: var(--accent);
-
-        }
-
-
-        .project-form-group textarea {
-
-            min-height: 150px;
-
-            resize: vertical;
-
-            line-height: 1.6;
-
-        }
-
-
-        .project-form-group select {
-
-            cursor: pointer;
-
-        }
-
-
-        .project-form-group select option {
-
-            background: #0d0f15;
-
-            color: #ffffff;
-
-        }
-
-
-      
-
-        .form-help {
-
-            margin-top: 7px;
-
-            color: #777b88;
-
-            font-size: 0.72rem;
-
-        }
-
-
-      
-
-        .featured-wrapper {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            padding: 15px 0;
-
-        }
-
-
-        .featured-wrapper input {
-
-            width: 17px;
-
-            height: 17px;
-
-            accent-color: var(--accent);
-
-            cursor: pointer;
-
-        }
-
-
-        .featured-wrapper label {
-
-            margin: 0;
-
-            color: #d7d8df;
-
-            font-size: 0.85rem;
-
-            cursor: pointer;
-
-        }
-
-
-
-        .form-actions {
-
-            grid-column: 1 / -1;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            margin-top: 10px;
-
-            padding-top: 25px;
-
-            border-top: 1px solid var(--border);
-
-        }
-
-
-        .save-project-button {
-
-            padding: 13px 25px;
-
-            border: none;
-
-            border-radius: 9px;
-
-            background: #ffffff;
-
-            color: #08090d;
-
-            font-size: 0.85rem;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            transition: all 0.25s ease;
-
-        }
-
-
-        .save-project-button:hover {
-
-            background: var(--accent);
-
-            color: #ffffff;
-
-            transform: translateY(-2px);
-
-        }
-
-
-        .clear-button {
-
-            padding: 12px 20px;
-
-            background: transparent;
-
-            color: var(--muted);
-
-            border: 1px solid var(--border);
-
-            border-radius: 9px;
-
-            font-size: 0.85rem;
-
-            cursor: pointer;
-
-        }
-
-
-        .clear-button:hover {
-
-            color: #ffffff;
-
-            border-color: #ffffff;
-
-        }
-
-
-        .form-message {
-
-            grid-column: 1 / -1;
-
-            min-height: 20px;
-
-            font-size: 0.8rem;
-
-        }
-
-
-        @media (max-width: 700px) {
-
-            .project-page {
-
-                padding: 35px 5%;
-
+    console.log("Project data:", {
+        title,
+        category,
+        description,
+        technologies,
+        github,
+        demo,
+        image,
+        featured
+    });
+
+
+    formMessage.textContent = "Saving project...";
+    formMessage.style.color = "#a5a8b3";
+
+
+    try {
+
+        console.log("Writing to Firestore...");
+
+
+        const docRef = await addDoc(
+            collection(db, "projects"),
+            {
+                title,
+                category,
+                description,
+                technologies,
+                github,
+                demo,
+                image,
+                featured,
+                createdBy: user.uid,
+                createdAt: serverTimestamp()
             }
+        );
 
 
-            .project-header {
+        console.log(
+            "Project saved successfully:",
+            docRef.id
+        );
 
-                flex-direction: column;
 
-                align-items: flex-start;
+        formMessage.textContent =
+            "Project saved successfully.";
 
-                margin-bottom: 35px;
+        formMessage.style.color =
+            "#8b7cff";
 
-            }
 
+        projectForm.reset();
 
-            .project-form-container {
 
-                padding: 25px;
+    } catch (error) {
 
-            }
+        console.error(
+            "FIRESTORE ERROR:",
+            error
+        );
 
 
-            .project-form {
+        formMessage.textContent =
+            "Error: " + error.message;
 
-                grid-template-columns: 1fr;
+        formMessage.style.color =
+            "#ff7070";
 
-            }
+    }
 
-
-            .project-form .full-width {
-
-                grid-column: auto;
-
-            }
-
-
-            .form-actions {
-
-                grid-column: auto;
-
-                flex-direction: column;
-
-                align-items: stretch;
-
-            }
-
-
-            .save-project-button,
-
-            .clear-button {
-
-                width: 100%;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-
-
-    <main class="project-page">
-
-
-        <header class="project-header">
-
-
-            <div>
-
-                <p class="project-header-label">
-                    PRIVATE CMS
-                </p>
-
-
-                <h1>
-                    Projects
-                </h1>
-
-
-                <p>
-
-                    Add and manage the projects
-                    displayed on your portfolio.
-
-                </p>
-
-            </div>
-
-
-            <a href="admin.html"
-               class="dashboard-link">
-
-                ← Dashboard
-
-            </a>
-
-
-        </header>
-
-
-
-        <section class="project-form-container">
-
-
-            <div class="form-heading">
-
-                <h2>
-                    Add New Project
-                </h2>
-
-                <p>
-                    Enter the details of your project below.
-                </p>
-
-            </div>
-
-
-
-            <form
-                class="project-form"
-                id="projectForm">
-
-
-                <!-- PROJECT TITLE -->
-
-                <div class="project-form-group">
-
-                    <label for="projectTitle">
-                        Project Title
-                    </label>
-
-                    <input
-                        type="text"
-                        id="projectTitle"
-                        placeholder="e.g. AirSense"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- CATEGORY -->
-
-                <div class="project-form-group">
-
-                    <label for="projectCategory">
-                        Category
-                    </label>
-
-                    <select
-                        id="projectCategory"
-                        required>
-
-                        <option value="">
-                            Select category
-                        </option>
-
-                        <option value="Software">
-                            Software
-                        </option>
-
-                        <option value="Machine Learning">
-                            Machine Learning
-                        </option>
-
-                        <option value="IoT">
-                            Internet of Things
-                        </option>
-
-                        <option value="Web">
-                            Web Development
-                        </option>
-
-                        <option value="Mobile">
-                            Mobile Development
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- DESCRIPTION -->
-
-                <div class="project-form-group full-width">
-
-                    <label for="projectDescription">
-                        Description
-                    </label>
-
-                    <textarea
-                        id="projectDescription"
-                        placeholder="Describe what the project does, the problem it solves, and your contribution."
-                        required>
-                    </textarea>
-
-                </div>
-
-
-
-                <!-- TECHNOLOGIES -->
-
-                <div class="project-form-group full-width">
-
-                    <label for="projectTechnologies">
-                        Technologies
-                    </label>
-
-                    <input
-                        type="text"
-                        id="projectTechnologies"
-                        placeholder="Python, Flask, LSTM, JavaScript"
-                    >
-
-                    <span class="form-help">
-
-                        Separate technologies with commas.
-
-                    </span>
-
-                </div>
-
-
-
-                <!-- GITHUB -->
-
-                <div class="project-form-group">
-
-                    <label for="projectGithub">
-                        GitHub URL
-                    </label>
-
-                    <input
-                        type="url"
-                        id="projectGithub"
-                        placeholder="https://github.com/..."
-                    >
-
-                </div>
-
-
-
-                <!-- LIVE DEMO -->
-
-                <div class="project-form-group">
-
-                    <label for="projectDemo">
-                        Live Demo URL
-                    </label>
-
-                    <input
-                        type="url"
-                        id="projectDemo"
-                        placeholder="https://..."
-                    >
-
-                </div>
-
-
-
-                <!-- IMAGE -->
-
-                <div class="project-form-group full-width">
-
-                    <label for="projectImage">
-                        Project Image URL
-                    </label>
-
-                    <input
-                        type="url"
-                        id="projectImage"
-                        placeholder="https://..."
-                    >
-
-                    <span class="form-help">
-
-                        We'll add direct image uploading through
-                        Firebase Storage later.
-
-                    </span>
-
-                </div>
-
-
-
-                <!-- FEATURED -->
-
-                <div class="project-form-group full-width">
-
-                    <div class="featured-wrapper">
-
-                        <input
-                            type="checkbox"
-                            id="projectFeatured"
-                        >
-
-                        <label for="projectFeatured">
-
-                            Feature this project on my portfolio
-
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- MESSAGE -->
-
-                <p
-                    class="form-message"
-                    id="formMessage">
-                </p>
-
-
-
-                <!-- ACTIONS -->
-
-                <div class="form-actions">
-
-
-                    <button
-                        type="submit"
-                        class="save-project-button">
-
-                        Save Project
-
-                    </button>
-
-
-                    <button
-                        type="reset"
-                        class="clear-button">
-
-                        Clear
-
-                    </button>
-
-
-                </div>
-
-
-            </form>
-
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- JAVASCRIPT -->
-
-    <script type="module"
-            src="admin-projects.js">
-    </script>
-
-
-</body>
-
-</html>
+});
